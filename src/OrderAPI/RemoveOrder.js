@@ -1,5 +1,5 @@
 // define the API endpoint URL
-const url = `http://www.omdbapi.com/?s=&apikey=263d22d8`;
+const url = `https://api.themoviedb.org/3/movie/550?api_key=e58fb6c52637bd3d571b455d411e9040`;
 
 // define an asynchronous function to remove an order from the API by index
 const RemoveOrder = async (index) => {

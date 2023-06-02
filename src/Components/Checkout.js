@@ -184,7 +184,7 @@ export default function Checkout({
 											</td>
 											<td>
 												{
-													cart.prodname
+													cart.name
 												}
 											</td>
 											<td>

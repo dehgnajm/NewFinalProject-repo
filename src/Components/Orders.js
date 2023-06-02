@@ -12,7 +12,7 @@ function Orders({ orders, removeOrder }) {
 
         removeOrder(id);
     }
-
+    orders = Array.from(orders);
     // The Orders function returns JSX that renders a table
     // containing the order history and various buttons that link to other pages of the website
     return (
@@ -65,7 +65,7 @@ function Orders({ orders, removeOrder }) {
                                                 }
                                             >
                                                 {
-                                                    movie.moviename
+                                                    movie.name
                                                 }{' '}
                                                 $
                                                 {movie.price.toFixed(
@@ -105,7 +105,7 @@ function Orders({ orders, removeOrder }) {
             </Table>
 			<Link to="/">
 				<Button variant="outline-primary m-1">
-					Back to Storefront
+					Back to homePage
 				</Button>
 			</Link>
 			<Link to="/cart">

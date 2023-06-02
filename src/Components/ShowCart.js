@@ -48,7 +48,7 @@ export default function ShowCart({ cart, setCart, costTotal, setCostTotal}) {
 	}
 	return (
 		<div className="container border border-dark border-1 mt-5">
-			<h1 className="bungee text-center">FakeStore</h1>
+			<h1 className="bungee text-center">MovieList</h1>
 			<div className="row">
 				{/* Displaying the cart items in a table */}
 				<Table striped bordered hover>
@@ -64,7 +64,7 @@ export default function ShowCart({ cart, setCart, costTotal, setCostTotal}) {
 						{cart.map((cart, index) => (
 							<tr key={index}>
 								<td>{index + 1}</td>
-								<td>{cart.prodname}</td>
+								<td>{cart.name}</td>
 								<td>${parseFloat(cart.price).toFixed(2)}</td>
 								<td>
 									{/* Adding a remove button for each item in the cart */}

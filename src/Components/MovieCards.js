@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import MovieShop from "./MovieShop";
+import MovieList from "./MovieList";
 
 function MovieCards({ movies, addToCartTotal}) {
 	// function to handle adding movies to the cart when the "Add to Cart" button is clicked
@@ -10,7 +11,7 @@ function MovieCards({ movies, addToCartTotal}) {
 		console.log("🚀 ~ file: MovieCards.js:10 ~ handleClickAdd ~ movies:", movies)
 		addToCartTotal(movies)
 	}
-
+	movies = Array.from(movies);
 	return (
 		<>
 			{/* mapping through each movie object in the movies array to display it as a Card */}
@@ -26,23 +27,19 @@ function MovieCards({ movies, addToCartTotal}) {
 						<Card.Img variant="top" src={movies.image} />
 						<Card.Body>
 							{/* movie name */}
-							<Card.Title className="bungee">{movies.moviename}</Card.Title>
+							<Card.Title className="bungee">{movies.name}</Card.Title>
 							<Card.Text>
 								{/* movie information: department, item, movieadj, material */}
-								<span className="fw-bold"> {movies.department}, {movies.item}, <br/>{movies.movieadj}-{movies.material} </span><br/>
+								<span className="fw-bold"> {movies.imdb_id}, {movies.poster_path} {movies.name}, <br/>{movies.logo_path}-{movies.id} </span><br/>
 								{/* movie description */}
-								{movies.description}
-								
-								<br />
-								<br />
-								{/* movie price */}
-								<span className="priceFormat">${movies.price}</span>
+								{movies.origin_country}
 								<br/>
 								<Link to={movies.key} className="removeLinkDecor bungee text-black" element={<MovieShop movies={movies}  />}>More Info...</Link>
 							</Card.Text>
 
 							{/* button to add movie to cart */}
-							<Button variant="primary" onClick={() => handleClickAdd(movies)}><span className="bungee" >Add to Cart</span></Button> 
+							<Button variant="primary" onClick={() => handleClickAdd(movies)}><span className="bungee" >Add to Cart</span></Button>
+
 						</Card.Body>
 					</Card>
 				</div>

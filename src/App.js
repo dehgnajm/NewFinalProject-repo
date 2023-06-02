@@ -75,7 +75,7 @@ export default function App() {
 			{
 				id: movie.key,
 				price: parseFloat(movie.price),
-				moviename: movie.moviename,
+				moviename: movie.name,
 			},
 		]);
 
