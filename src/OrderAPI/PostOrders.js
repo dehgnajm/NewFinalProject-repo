@@ -1,5 +1,5 @@
 // Define the API endpoint to make a POST request
-const url = `https://api.themoviedb.org/3/movie/550?api_key=e58fb6c52637bd3d571b455d411e9040`;
+const url = `http://www.omdbapi.com/?apikey=2a1b58ae&`;
 
 // Define a function to make a POST request to the API endpoint with a new order object
 const PostOrder = async (newOrder) => {
@@ -11,7 +11,7 @@ const PostOrder = async (newOrder) => {
   
   // Parse the response from the API as JSON data and return it
   const data = await response.json()
-  return data
+  return (data)
 }
 
 // Export the PostOrder function as the default export of the module

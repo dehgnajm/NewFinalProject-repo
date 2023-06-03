@@ -1,17 +1,35 @@
 // Define the endpoint for the API to retrieve movies
-const url = `https://api.themoviedb.org/3/movie/550?api_key=e58fb6c52637bd3d571b455d411e9040`;
-
+const url = `http://www.omdbapi.com/?apikey=2a1b58ae&`
 // Define an async function that retrieves orders from the API
 export async function getOrders() {
     try {
         // Make a GET request to the API endpoint
-        const resp = await fetch(url);
+        let resp = await fetch(url + `s=fight`);
 
         // Parse the response as JSON
-        const data = await resp.json();
+        let data = await resp.json();
+        let movies = data.Search;
 
+        movies = movies.map(async movie => {
+            let cleanMovie = {
+                title: movie.Title,
+                year: movie.Year,
+                id: movie.imdbID,
+                image: movie.Poster
+            };
+
+            let resp = await fetch(url + `i=${cleanMovie.id}`);
+            let data = await resp.json();
+            // console.log(data);
+            cleanMovie.plot = data.Plot;
+            console.log(cleanMovie);
+
+            return cleanMovie;
+        
+        })
+        movies = await Promise.all(movies);
         // Return the product data
-        return data;
+        return (movies);
     } catch (e) {
         // Log an error message if the request fails
         console.log("Fetching the products failed", e);

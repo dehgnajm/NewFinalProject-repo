@@ -6,11 +6,11 @@ import MovieList from "./Components/MovieList";
 import ShowCart from "./Components/ShowCart";
 import Checkout from "./Components/Checkout";
 import PostOrders from "./OrderAPI/PostOrders";
-import MovieShop from "./Components/MovieShop";
 import { getMoviesAPI } from "./MoviesAPI/GetMoviesAPI";
 import { getOrders } from "./OrderAPI/GetOrders"
 import Orders from "./Components/Orders";
 import RemoveOrder from "./OrderAPI/RemoveOrder";
+import MovieCards from "./Components/MovieCards";
 
 
 export default function App() {
@@ -27,11 +27,16 @@ export default function App() {
 		fetchOrders();
 	},[]);
 
-	const fetchOrders = async () =>{
-		const addOrders = await getOrders();
-		setOrders(addOrders);
-		
-	}
+	const fetchOrders = async () => {
+		try {
+		  const ordersData = await getOrders();
+		  setOrders(ordersData);
+		} catch (error) {
+		  console.error("Error fetching orders:", error);
+		  // Handle the error state or show an error message to the user
+		}
+	  };
+	  
 
 	const removeOrder = async (id) => {
 		console.log("🚀 ~ file: App.js:37 ~ removeOrder ~ id:", id)
@@ -126,14 +131,14 @@ export default function App() {
 						/>
 					}
 				/>
-				{/* Route to handle movie shop page */}
+				{/* Route to handle movie card page */}
 				<Route
 					path="/:key"
 					element={
-						<MovieShop movies={movies} addToCartTotal={addToCartTotal} />
+						<MovieCards movies={movies} addToCartTotal={addToCartTotal} />
 					}
 				/>
-
+				
 
 				{/* Default route for the Home page */}
 				<Route

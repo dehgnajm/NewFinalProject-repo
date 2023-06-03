@@ -1,5 +1,5 @@
 // define the API endpoint URL
-const url = `https://api.themoviedb.org/3/movie/550?api_key=e58fb6c52637bd3d571b455d411e9040`;
+const url = `http://www.omdbapi.com/?apikey=2a1b58ae&`;
 
 // define an asynchronous function to remove an order from the API by index
 const RemoveOrder = async (index) => {
@@ -10,7 +10,7 @@ const RemoveOrder = async (index) => {
   // convert the response to JSON format
   const data = await response.json();
   // return the data
-  return data;
+  return (data);
 }
 
 // export the RemoveOrder function for use in other modules

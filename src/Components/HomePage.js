@@ -1,9 +1,7 @@
-// import { useEffect } from "react";
-// import { getProductsAPI } from "../ProductsAPI/GetProductsAPI";
+
 import MovieCards from "./MovieCards";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import Title from "./Title";
-
 
 export default function HomePage({
 	cartTotal,
@@ -16,8 +14,6 @@ export default function HomePage({
 	movies,
 	
 }) {
-
-
 
 	// render the MovieCards component and pass the necessary props
 	return (
@@ -34,6 +30,7 @@ export default function HomePage({
 					addToCartTotal={addToCartTotal}
 					removeFromCartTotal={removeFromCartTotal}
 				/>
+				
 			</div>
 		</div>
 	);

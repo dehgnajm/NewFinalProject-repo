@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
+
 // Define a functional component called MovieShop that receives two props:
 // movies: an array of movies as objects
 // addToCartTotal: a function to add a movie to the cart
@@ -19,7 +20,7 @@ export default function MovieShop({ movies , addToCartTotal }) {
   }
 
   // Destructure the properties of the selected movie from the array
-  const { id, imdb_id, logo_path, poster_path, name, origin_country } = movies[movieIndex];
+  const { Title, Year, imdbID, Poster} = movies[movieIndex];
 
   // Define a function called handleClickAdd that takes the selected movie as a parameter and adds it to the cart
   function handleClickAdd(movies){
@@ -32,13 +33,12 @@ export default function MovieShop({ movies , addToCartTotal }) {
     <Container>
       <Row className='p-4'>
         <Col>
-          <img src={logo_path} className='img-fluid rounded-2' alt='Movie logo'></img>
+          <img src={Poster} className='img-fluid rounded-2' alt='Movie logo'></img>
         </Col>
         <Col className='col-lg-6 col-md-12 col-sm-12'>
-          <h1 className='display-4 bungee'>{name}</h1>
-          <h3><span className="fw-bold">Material:</span> {poster_path} <br /><span className="fw-bold">Item:</span> {id}<br/><span className="fw-bold"></span> </h3><br />
-          <h2>{imdb_id}</h2>
-          <h1 className='display-5'>${origin_country}</h1><br />
+          <h1 className='display-4 bungee'>{Title}</h1>
+          <h3><span className="fw-bold">Year:</span> {Year} <br /><span className="fw-bold">Id:</span> {imdbID}<br/><span className="fw-bold"></span> </h3><br />
+        
           <Link to="/">
             <Button variant='primary' className='m-3'><span className='bungee'>Continue Shopping</span></Button>
             <Button variant="primary" className='m-3' onClick={() => handleClickAdd(movies[movieIndex])}><span className="bungee" >Add to Cart</span></Button> 

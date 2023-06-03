@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // Declaring the Orders function component and passing in the props 'orders' and 'removeOrder'
 function Orders({ orders, removeOrder }) {
     console.log('🚀 ~ file: Orders.js:5 ~ Orders ~ orders:', orders);
-
+    
     // Defining the removeFromOrders function to remove an order from the list based on its ID
     function removeFromOrders(id) {
         console.log('🚀 ~ file: Orders.js:11 ~ removeFromOrders ~ id:', id);
@@ -13,6 +13,7 @@ function Orders({ orders, removeOrder }) {
         removeOrder(id);
     }
     orders = Array.from(orders);
+    console.log(orders);
     // The Orders function returns JSX that renders a table
     // containing the order history and various buttons that link to other pages of the website
     return (
@@ -21,7 +22,7 @@ function Orders({ orders, removeOrder }) {
                 Order History
             </h2>
             <h4 className="pageTitle fw-bolder text-center">
-                List of shopping, limitted 30 purchases{' '}
+                List of shopping, limitted 10 purchases{' '}
             </h4>
 
             {/* Rendering a table with headers and mapped rows of data */}
@@ -36,10 +37,9 @@ function Orders({ orders, removeOrder }) {
                     <tr>
                         <th>Order Number</th>
                         <th>Name</th>
-                        <th>Email</th>
                         <th>Movies</th>
                         <th>Total</th>
-                        <th>Date</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -50,11 +50,11 @@ function Orders({ orders, removeOrder }) {
                             <td>
                                 {order.fname} {order.lname}
                             </td>
-                            <td>{order.email}</td>
                             <td>
                                 {/* Rendering a list of movies associated with the order */}
                                 <ul className="list-unstyled">
-                                    {order.movies.map(
+                                {order.movies &&
+                                    order.movies.map(
                                         (movie) => (
                                             <li
                                                 key={
@@ -65,7 +65,7 @@ function Orders({ orders, removeOrder }) {
                                                 }
                                             >
                                                 {
-                                                    movie.name
+                                                    movie.Title
                                                 }{' '}
                                                 $
                                                 {movie.price.toFixed(
@@ -86,7 +86,7 @@ function Orders({ orders, removeOrder }) {
                             <td>{order.createdAt}</td>
                             {/* Rendering a button to remove the order from the list */}
                             <td>
-                                <Button
+                                <Button className='Remove Order'
                                     variant="outline-danger"
                                     onClick={() =>
                                         removeFromOrders(
@@ -102,6 +102,7 @@ function Orders({ orders, removeOrder }) {
                         </tr>
                     ))}
                 </tbody>
+
             </Table>
 			<Link to="/">
 				<Button variant="outline-primary m-1">

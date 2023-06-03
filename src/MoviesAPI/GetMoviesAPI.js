@@ -1,10 +1,6 @@
 // Define the endpoint for the API to retrieve movies
 
-    
-
- const url = `https://api.themoviedb.org/3/movie/550?api_key=e58fb6c52637bd3d571b455d411e9040`;
-
-   
+ const url = `http://www.omdbapi.com/?apikey=2a1b58ae&`;
 
 // Define an async function that retrieves movies from the API
 export async function getMoviesAPI() {

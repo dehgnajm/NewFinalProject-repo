@@ -2,8 +2,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import MovieShop from "./MovieShop";
-import MovieList from "./MovieList";
+import HomePage from "./HomePage";
 
 function MovieCards({ movies, addToCartTotal}) {
 	// function to handle adding movies to the cart when the "Add to Cart" button is clicked
@@ -11,11 +10,15 @@ function MovieCards({ movies, addToCartTotal}) {
 		console.log("🚀 ~ file: MovieCards.js:10 ~ handleClickAdd ~ movies:", movies)
 		addToCartTotal(movies)
 	}
+	 
 	movies = Array.from(movies);
+	console.log(movies);
+
+	
 	return (
 		<>
 			{/* mapping through each movie object in the movies array to display it as a Card */}
-			{movies.map((movies) => (
+			{movies.map(async movie => (
 				<div className="col cardContainer" key={movies.key}>
 					{/* individual movie Card */}
 					<Card
@@ -27,14 +30,14 @@ function MovieCards({ movies, addToCartTotal}) {
 						<Card.Img variant="top" src={movies.image} />
 						<Card.Body>
 							{/* movie name */}
-							<Card.Title className="bungee">{movies.name}</Card.Title>
+							<Card.Title className="bungee">{movie.Title}</Card.Title>
 							<Card.Text>
 								{/* movie information: department, item, movieadj, material */}
-								<span className="fw-bold"> {movies.imdb_id}, {movies.poster_path} {movies.name}, <br/>{movies.logo_path}-{movies.id} </span><br/>
+								 <span className="fw-bold"> {movies.Year}, <br/>{movies.imdbID}-{movies.Poster}</span> <br/>
 								{/* movie description */}
-								{movies.origin_country}
+								{movies.Plot}
 								<br/>
-								<Link to={movies.key} className="removeLinkDecor bungee text-black" element={<MovieShop movies={movies}  />}>More Info...</Link>
+								<Link to={movies.key} className="removeLinkDecor bungee text-black" element={<HomePage movies={movies}  />}>More Info...</Link>
 							</Card.Text>
 
 							{/* button to add movie to cart */}

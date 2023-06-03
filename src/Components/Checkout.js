@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap';
-import { useFormik } from 'formik'; // form handling
-import * as yup from 'yup'; // form validation
+import { useFormik } from 'formik'; // import formik library for form handling
+import * as yup from 'yup'; // import yup library for form validation
 import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 
@@ -22,7 +22,7 @@ function MyVerticallyCenteredModal(props, {totalWTax}) {
 			</Modal.Header>
 			<Modal.Body>
 				<h4 className="display-6 bungee text-center">
-					Yay! Your Purchase was successfull.
+					Your Purchase was Processed.
 				</h4>
 			</Modal.Body>
 			<Modal.Footer>
@@ -46,7 +46,7 @@ export default function Checkout({
 
 	
 
-	// create a formik for form handling and validation
+	// useFormik hook to create a formik instance for form handling and validation
 	const formik = useFormik({
 		initialValues: {
 			fname: '',
@@ -56,7 +56,7 @@ export default function Checkout({
 		onSubmit: (values) => {
 			handleSubmit(values);
 		},
-		// validate the form fields
+		// validationSchema to validate the form fields
 		validationSchema: yup.object({
 			email: yup
 				.string()
@@ -67,14 +67,14 @@ export default function Checkout({
 		}),
 	});
 
-	// create a function to handle form submission
+	// function to handle form submission
 	function handleSubmit(values) {
 		const { fname, lname, email } = values;
 
-		const newCart = [...cart]; 
+		const newCart = [...cart]; // copy cart state
 		let totalTaxIncluded = costTotal * 1.095; // calculate total cost with tax
 		totalTaxIncluded = totalTaxIncluded.toFixed(2); // round off the decimal to 2 digits
-		handleBuy(fname, lname, email, newCart, totalTaxIncluded); // handleBuy function should be called from the parent component
+		handleBuy(fname, lname, email, newCart, totalTaxIncluded); // call the handleBuy function from the parent component
 		setCart([]); // empty the cart
 		setCostTotal(0); // reset the total cost
 		formik.resetForm();
@@ -90,7 +90,8 @@ export default function Checkout({
 					{/* Heading section */}
 					<h1 className="bungee display-2">Checkout</h1>
 					<h6 className="bungee ms-2">
-						Congrats on making your purchase process this far.
+						So you made it this far, well go on buy this
+						stuff.
 					</h6>
 
 					{/*  Form section */}
@@ -112,7 +113,7 @@ export default function Checkout({
 								formik.errors.fname}
 						</div>
 
-						{/* Last name */}
+						{/* Last name input */}
 						<input
 							className="form-control m-2 fw-bolder text-dark"
 							type="text"
@@ -129,7 +130,7 @@ export default function Checkout({
 								formik.errors.lname}
 						</div>
 
-						{/* Email */}
+						{/* Email input */}
 						<input
 							className="form-control m-2 fw-bolder text-dark"
 							type="text"
@@ -146,7 +147,7 @@ export default function Checkout({
 								formik.errors.email}
 						</div>
 
-						{/* Submit */}
+						{/* Submit button */}
 						{cart.length > 0 ? (
 				<Button
 					variant="success"
@@ -155,7 +156,7 @@ export default function Checkout({
 				>
 					Buy
 				</Button>
-			) : <><Link to="/"> <Button
+			) : <><Link to="/orders"> <Button
 			variant="primary"
 			className="m-3"
 			
@@ -184,7 +185,7 @@ export default function Checkout({
 											</td>
 											<td>
 												{
-													cart.name
+													cart.prodname
 												}
 											</td>
 											<td>
@@ -238,7 +239,7 @@ export default function Checkout({
 						
 						className="text-white bungee fw-bolder"
 					>
-						Order History
+						See Order History
 					</Button>
 				</Link>
 				</div>

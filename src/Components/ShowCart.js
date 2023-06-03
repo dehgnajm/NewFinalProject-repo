@@ -28,15 +28,8 @@ export default function ShowCart({ cart, setCart, costTotal, setCostTotal}) {
 			<div className="row">
 				{/* Displaying the cart items in a table */}
 				<Table striped>
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Product</th>
-							<th>Price</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody className="text-center"><span className="display-3 bungee text-danger" >Still hesitate shopping? Go add some movies to your cart!</span></tbody>
+					
+					<tbody className="text-center"><span className="display-3 bungee text-danger" >Go add some movies to your cart!</span></tbody>
 					</Table>
 					<Link to="/">
 							<Button variant="outline-primary m-4">Continue Shopping </Button>
@@ -61,11 +54,12 @@ export default function ShowCart({ cart, setCart, costTotal, setCostTotal}) {
 						</tr>
 					</thead>
 					<tbody>
-						{cart.map((cart, index) => (
+						{cart.map((item, index) => (
+							
 							<tr key={index}>
 								<td>{index + 1}</td>
-								<td>{cart.name}</td>
-								<td>${parseFloat(cart.price).toFixed(2)}</td>
+								<td>{item.name}</td>
+								<td>${parseFloat(item.price).toFixed(2)}</td>
 								<td>
 									{/* Adding a remove button for each item in the cart */}
 									<Button
@@ -77,6 +71,7 @@ export default function ShowCart({ cart, setCart, costTotal, setCostTotal}) {
 								</td>
 							</tr>
 						))}
+						console.log(item);
 						{/* Displaying the total cost of the items in the cart */}
 						<tr>
 							<td></td>
